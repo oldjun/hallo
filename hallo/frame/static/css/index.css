@@ -1,0 +1,14 @@
+.title {
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
+    font-size: 80px;
+}
+
+.content {
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 26px;
+    color: #666;
+}
