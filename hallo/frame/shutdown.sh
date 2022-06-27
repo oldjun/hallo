@@ -1,4 +1,4 @@
 #!/bin/bash
 
-supervisor stop all
+supervisorctl stop all
 supervisorctl shutdown

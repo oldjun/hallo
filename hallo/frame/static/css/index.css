@@ -12,3 +12,20 @@
     font-size: 26px;
     color: #666;
 }
+
+.content {
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 33.3%, rgba(252,176,69,1) 66.6%, rgba(131,58,180,1) 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 300% 100%;
+    animation: text 4s infinite linear;
+}
+
+@keyframes text {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -150% 0;
+    }
+}
