@@ -12,7 +12,7 @@ class Config(object):
     TESTING = False
     HOST = '127.0.0.1'
     PORT = 80
-    # SERVER_NAME = 'hallo.com'
+    SERVER_NAME = 'hallo.com'
     SECRET_KEY = ''
     BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 
