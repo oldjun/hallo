@@ -48,6 +48,7 @@ class Router(object):
         if self.module:
             array.insert(0, self.module)
         handler = '/'.join(array)
+
         @self.app.route(path, methods=methods, endpoint=handler, subdomain=self.subdomain)
         @time_cost
         @assign_connection
