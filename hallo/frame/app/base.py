@@ -39,4 +39,4 @@ if mysql_conf:
 # redis
 app.config['redis'] = FlaskRedis(app)
 
-from app.router import router
+from app.router import *

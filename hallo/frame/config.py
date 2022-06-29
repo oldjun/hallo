@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import os
 import warnings
 
@@ -10,7 +11,8 @@ class Config(object):
     DEBUG = False
     TESTING = False
     HOST = '127.0.0.1'
-    PORT = 8080
+    PORT = 80
+    SERVER_NAME = 'hallo.com'
     SECRET_KEY = ''
     BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 

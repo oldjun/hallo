@@ -9,10 +9,12 @@ from app.helper.decorator import time_cost, assign_connection
 
 class Router(object):
 
-    def __init__(self, app):
+    def __init__(self, app, subdomain=None, module=None):
         self.app = app
+        self.subdomain = subdomain
+        self.module = module
 
-        @self.app.route('/<path:path>', methods=['GET', 'POST'])
+        @self.app.route('/<path:path>', methods=['GET', 'POST'], endpoint=module, subdomain=subdomain)
         @time_cost
         @assign_connection
         def default(path):
@@ -21,10 +23,20 @@ class Router(object):
             arr.pop()
             controller = arr[-1]
             arr.pop()
-            module = '.'.join(arr)
-            return self.dispatcher(module, controller, action)
+            if module:
+                module_arr = module.split('/')
+                __module = '.'.join(module_arr + arr)
+            else:
+                __module = '.'.join(arr)
+            return self.dispatcher(__module, controller, action)
 
-        @self.app.route('/favicon.ico', methods=['GET', 'POST'])
+        # handle the favicon request
+        if self.module:
+            favicon_endpoint = module + '/favicon'
+        else:
+            favicon_endpoint = 'favicon'
+
+        @app.route('/favicon.ico', methods=['GET', 'POST'], endpoint=favicon_endpoint, subdomain=subdomain)
         def favicon():
             return redirect('/static/favicon.ico')
 
@@ -32,7 +44,11 @@ class Router(object):
         if methods is None:
             methods = ['GET', 'POST']
 
-        @self.app.route(path, methods=methods, endpoint=handler)
+        array = handler.split('/')
+        if self.module:
+            array.insert(0, self.module)
+        handler = '/'.join(array)
+        @self.app.route(path, methods=methods, endpoint=handler, subdomain=self.subdomain)
         @time_cost
         @assign_connection
         def route(**kwargs):
