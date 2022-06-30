@@ -12,20 +12,20 @@ class Config(object):
     TESTING = False
     HOST = '127.0.0.1'
     PORT = 80
-    SERVER_NAME = 'hallo.com'
+    # SERVER_NAME = 'hallo.com'
     SECRET_KEY = ''
     BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 
     # mysql config
     MYSQL_MAX_CONN = 1
-    # MYSQL_CONF = dict(
-    #     host='127.0.0.1',
-    #     port=3306,
-    #     user='root',
-    #     password='password',
-    #     database='hallo',
-    #     charset='utf8'
-    # )
+    MYSQL_CONF = dict(
+        host='127.0.0.1',
+        port=3306,
+        user='root',
+        password='password',
+        database='hallo',
+        charset='utf8'
+    )
 
     # redis config
     REDIS_URL = 'redis://127.0.0.1:6379/0'
