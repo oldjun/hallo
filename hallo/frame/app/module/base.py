@@ -13,16 +13,21 @@ class BaseController(object):
     def __init__(self):
         self.conf = app.config
         self.redis = app.config['redis']
+        self.memcache = app.config['memcache']
         self.page = 0
         self.offset = 0
         self.limit = 0
 
     @staticmethod
-    def ok(data, code=OK):
+    def ok(data=None, code=OK):
+        if data is None:
+            data = 'ok'
         return dict(code=code, data=data)
 
     @staticmethod
-    def error(data, code=ERROR):
+    def error(data=None, code=ERROR):
+        if data is None:
+            data = 'error'
         return dict(code=code, data=data)
 
     @staticmethod
@@ -45,7 +50,7 @@ class BaseController(object):
         self.limit = int(request.args.get('limit', 10))
         self.offset = (self.page - 1) * self.limit
 
-    def resp_list(self, all, total):
+    def resp_page(self, all, total):
         total_page = math.ceil(total / self.limit)
         data = dict(
             list=all,

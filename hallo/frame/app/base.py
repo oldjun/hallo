@@ -6,6 +6,7 @@ from config import config
 from app.helper.functions import create_log
 from pymyorm.connection_pool import ConnectionPool
 import os
+import memcache
 
 config_name = os.environ.get('FLASK_APP_CONFIG', 'development')
 
@@ -26,17 +27,23 @@ create_log(log_file=log_file)
 
 app.logger.info('flask app init')
 
+debug = app.config.get('DEBUG', False)
+
 # mysql
 mysql_conf = app.config.get('MYSQL_CONF')
 if mysql_conf:
     pool = ConnectionPool()
     mysql_max_conn = app.config.get('MYSQL_MAX_CONN', 1)
     pool.size(size=mysql_max_conn)
-    debug = app.config.get('DEBUG', False)
     mysql_conf['debug'] = debug
     pool.create(**mysql_conf)
 
 # redis
 app.config['redis'] = FlaskRedis(app)
+
+# memcached
+memcache_conf = app.config.get('MEMCACHE_CONF')
+if memcache_conf:
+    app.config['memcache'] = memcache.Client(memcache_conf, debug=debug)
 
 from app.router import *

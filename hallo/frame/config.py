@@ -30,6 +30,11 @@ class Config(object):
     # redis config
     REDIS_URL = 'redis://127.0.0.1:6379/0'
 
+    # memcache config
+    MEMCACHE_CONF = [
+        '127.0.0.1:11211'
+    ]
+
     # oss config
     OSS_CONF = dict(
         endpoint='',
