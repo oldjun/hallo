@@ -6,4 +6,3 @@ from app.helper.router import Router
 
 router = Router(app=app)
 router.add('/', 'index/index')
-router.add('/test/<name>', 'test/hello')

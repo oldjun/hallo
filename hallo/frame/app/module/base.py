@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import request, render_template, current_app as app
+import os
 import json
 import math
 
@@ -38,8 +39,11 @@ class BaseController(object):
     def post(name):
         return request.json.get(name)
 
-    @staticmethod
-    def render(template, data=None):
+    def render(self, template, data=None):
+        base_path = self.conf.get('BASE_PATH')
+        filename = os.path.join(base_path, 'templates', template)
+        if not os.path.exists(filename):
+            raise Exception(f'file not found: {filename}')
         if data is None:
             return render_template(template)
         else:
