@@ -39,6 +39,10 @@ class BaseController(object):
     def post(name):
         return request.json.get(name)
 
+    @staticmethod
+    def file(name):
+        return request.files.get(name)
+
     def render(self, template, data=None):
         base_path = self.conf.get('BASE_PATH')
         filename = os.path.join(base_path, 'templates', template)

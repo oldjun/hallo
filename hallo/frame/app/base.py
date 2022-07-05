@@ -41,9 +41,9 @@ if mysql_conf:
 # redis
 app.config['redis'] = FlaskRedis(app)
 
-# memcached
-memcache_conf = app.config.get('MEMCACHE_CONF')
-if memcache_conf:
-    app.config['memcache'] = memcache.Client(memcache_conf, debug=debug)
+# cache
+cache_conf = app.config.get('CACHE_CONF')
+if cache_conf:
+    app.config['cache'] = memcache.Client(cache_conf, debug=debug)
 
 from app.router import *

@@ -16,6 +16,9 @@ class Config(object):
     SECRET_KEY = ''
     BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 
+    # file upload
+    MAX_CONTENT_LENGTH = 8 * 1024 * 1024  # 8M
+
     # mysql config
     MYSQL_MAX_CONN = 1
     MYSQL_CONF = dict(
@@ -30,8 +33,8 @@ class Config(object):
     # redis config
     REDIS_URL = 'redis://127.0.0.1:6379/0'
 
-    # memcache config
-    MEMCACHE_CONF = [
+    # cache config
+    CACHE_CONF = [
         '127.0.0.1:11211'
     ]
 
@@ -56,7 +59,7 @@ class ProductionConfig(Config):
         port=3306,
         user='root',
         password='password',
-        database='rabble',
+        database='hallo',
         charset='utf8'
     )
 
