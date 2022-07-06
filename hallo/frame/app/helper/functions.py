@@ -1,23 +1,20 @@
 # -*- coding: utf-8 -*-
 
-import hashlib
-import time
 from logging.config import dictConfig
 
 
-def ok(data='ok'):
+def ok(data=None):
+    if data is None:
+        data = 'ok'
     return dict(code=0, data=data)
 
 
-def error(data='error', code=1):
+def error(data=None, code=None):
+    if data is None:
+        data = 'error'
+    if code is None:
+        code = 1
     return dict(code=code, data=data)
-
-
-def create_token(userid):
-    md5 = hashlib.md5()
-    md5.update(str(time.time()).encode('utf-8'))
-    md5.update(userid.encode('utf-8'))
-    return md5.hexdigest()
 
 
 def create_log(log_file):

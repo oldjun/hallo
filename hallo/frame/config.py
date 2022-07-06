@@ -2,6 +2,7 @@
 
 import os
 import warnings
+from datetime import timedelta
 
 warnings.filterwarnings('ignore')
 
@@ -13,13 +14,16 @@ class Config(object):
     HOST = '127.0.0.1'
     PORT = 80
     # SERVER_NAME = 'hallo.com'
-    SECRET_KEY = ''
     BASE_PATH = os.path.abspath(os.path.dirname(__file__))
+
+    # session
+    SECRET_KEY = ''
+    PERMANENT_SESSION_LIFETIME = timedelta(hours=1)
 
     # file upload
     MAX_CONTENT_LENGTH = 8 * 1024 * 1024  # 8M
 
-    # mysql config
+    # mysql
     MYSQL_MAX_CONN = 1
     MYSQL_CONF = dict(
         host='127.0.0.1',
@@ -30,15 +34,15 @@ class Config(object):
         charset='utf8'
     )
 
-    # redis config
+    # redis
     REDIS_URL = 'redis://127.0.0.1:6379/0'
 
-    # cache config
+    # cache
     CACHE_CONF = [
         '127.0.0.1:11211'
     ]
 
-    # oss config
+    # oss
     OSS_CONF = dict(
         endpoint='',
         bucket='',

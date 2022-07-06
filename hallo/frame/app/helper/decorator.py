@@ -3,7 +3,7 @@
 import functools
 import time
 import logging
-from flask import request, current_app as app
+from flask import request, session, current_app as app
 from app.helper.functions import error
 from pymyorm.local import local
 from pymyorm.connection_pool import ConnectionPool
@@ -25,14 +25,25 @@ def assign_connection(func):
     return wrapper
 
 
-def verify_login(func):
+def check_login(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        userid = session.get('userid')
+        if not userid:
+            return error('login is required', 401)
+        else:
+            return func(*args, **kwargs)
+    return wrapper
+
+
+def check_token(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         token = request.headers.get('Token')
         if not token:
-            return error('token is missing', 401)
+            return error('token is missing')
         if not app.config['redis'].get(token):
-            return error('login session is expired, please login again', 401)
+            return error('token is expired', 401)
         else:
             return func(*args, **kwargs)
     return wrapper

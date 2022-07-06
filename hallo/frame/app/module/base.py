@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from flask import request, render_template, current_app as app
+from app.models.user import User
 import os
-import json
 import math
 
 
@@ -13,8 +13,8 @@ class BaseController(object):
 
     def __init__(self):
         self.conf = app.config
-        self.redis = app.config['redis']
-        self.memcache = app.config['memcache']
+        self.redis = app.config.get('redis')
+        self.cache = app.config.get('cache')
         self.page = 0
         self.offset = 0
         self.limit = 0
@@ -43,6 +43,10 @@ class BaseController(object):
     def file(name):
         return request.files.get(name)
 
+    @staticmethod
+    def header(name):
+        return request.headers.get(name)
+
     def render(self, template, data=None):
         base_path = self.conf.get('BASE_PATH')
         filename = os.path.join(base_path, 'templates', template)
@@ -69,7 +73,18 @@ class BaseController(object):
         )
         return self.ok(data)
 
-    def get_current_user(self):
-        token = request.headers.get('Token')
-        user = self.redis.get(token)
-        return json.loads(user)
+    @property
+    def userid(self):
+        token = self.header('Token')
+        userid = self.redis.get(token)
+        if not userid:
+            return None
+        return str(userid, 'UTF-8')
+
+    @property
+    def user(self):
+        userid = self.userid
+        if not userid:
+            return None
+        user = User.find().where(id=userid).one()
+        return user
