@@ -30,7 +30,7 @@ class File(object):
     def upload(self, file):
         if not file:
             raise Exception('文件上传失败')
-        path = 'static/upload'
+        path = 'static/upload/'
         if file.content_type in self.file_type_txt:
             path += self.file_path_txt
         elif file.content_type in self.file_type_img:

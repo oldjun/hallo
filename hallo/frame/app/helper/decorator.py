@@ -41,7 +41,7 @@ def check_token(func):
     def wrapper(*args, **kwargs):
         token = request.headers.get('Token')
         if not token:
-            return error('token is missing')
+            return error('token is missing', 401)
         if not app.config['redis'].get(token):
             return error('token is expired', 401)
         else:

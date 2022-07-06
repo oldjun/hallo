@@ -27,7 +27,7 @@ class UserController(BaseController):
     @check_login
     def info(self):
         userid = session['userid']
-        user = User.find().where(id=userid).one(raw=True)
+        user = User.find().where(id=userid).one()
         if not user:
             return self.error('用户不存在')
 
