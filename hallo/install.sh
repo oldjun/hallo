@@ -1,8 +1,5 @@
 #!/bin/bash
 
-python3=/usr/bin/python3
-pip3=/usr/bin/pip3
-
 project=%(project)s
 base_path=%(base_path)s
 echo $base_path
@@ -18,11 +15,11 @@ if [ ! -d $base_path/log ];then
     mkdir $base_path/log
 fi
 
-$python3 -m venv $base_path/venv
+python3 -m venv $base_path/venv
 source $base_path/venv/bin/activate
-$pip3 install -r $base_path/requirements.txt
-$pip3 install uwsgi
-$pip3 install supervisor
+pip3 install -r $base_path/requirements.txt
+pip3 install uwsgi
+pip3 install supervisor
 echo_supervisord_conf > $supervisord_conf
 sed -i "s#/tmp/supervisor.sock#$base_path/log/supervisor.sock#g" $supervisord_conf
 sed -i "s#/tmp/supervisord.log#$base_path/log/supervisor.log#g" $supervisord_conf
