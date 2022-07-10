@@ -44,7 +44,7 @@ redirect_stderr = true
 stopasgroup = true
 EOF
 
-if [ ! -f $base_path/uwsgi.ini];then
+if [ ! -f $base_path/uwsgi.ini ];then
     touch $base_path/uwsgi.ini
 fi
 cat > $base_path/uwsgi.ini << EOF
