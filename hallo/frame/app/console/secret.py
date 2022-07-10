@@ -7,5 +7,5 @@ import secrets
 class SecretCommand(BaseCommand):
 
     @staticmethod
-    def refresh():
+    def key():
         print(secrets.token_hex())
