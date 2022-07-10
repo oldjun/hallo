@@ -2,6 +2,7 @@
 
 import os.path
 import shutil
+import stat
 import sys
 
 
@@ -62,6 +63,9 @@ class Command(object):
         )
         fp.write(data % data_map)
         fp.close()
+
+        file_mode = os.stat(prj_install_shell).st_mode
+        os.chmod(prj_install_shell, file_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
     def notice(self, text):
         print(f'\033[0;31m{text}\033[0m')
