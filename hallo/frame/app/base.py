@@ -8,7 +8,7 @@ from pymyorm.connection_pool import ConnectionPool
 import os
 import memcache
 
-config_name = os.environ.get('FLASK_APP_CONFIG', 'development')
+config_name = os.environ.get('FLASK_CONFIG', 'dev')
 
 root_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 template_folder = os.path.join(root_path, 'templates')
@@ -33,8 +33,8 @@ debug = app.config.get('DEBUG', False)
 mysql_conf = app.config.get('MYSQL_CONF')
 if mysql_conf:
     pool = ConnectionPool()
-    mysql_max_conn = app.config.get('MYSQL_MAX_CONN', 1)
-    pool.size(size=mysql_max_conn)
+    mysql_pool_size = app.config.get('MYSQL_POOL_SIZE', 1)
+    pool.size(size=mysql_pool_size)
     mysql_conf['debug'] = debug
     pool.create(**mysql_conf)
 

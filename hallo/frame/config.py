@@ -24,7 +24,7 @@ class Config(object):
     MAX_CONTENT_LENGTH = 8 * 1024 * 1024  # 8M
 
     # mysql
-    MYSQL_MAX_CONN = 1
+    MYSQL_POOL_SIZE = 1
     MYSQL_CONF = dict(
         host='127.0.0.1',
         port=3306,
@@ -74,7 +74,7 @@ class TestingConfig(Config):
 
 
 config = dict(
-    development=DevelopmentConfig,
-    production=ProductionConfig,
-    testing=TestingConfig
+    dev=DevelopmentConfig,
+    prod=ProductionConfig,
+    test=TestingConfig
 )

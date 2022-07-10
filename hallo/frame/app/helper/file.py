@@ -8,7 +8,7 @@ from config import config
 class File(object):
 
     def __init__(self):
-        config_name = os.environ.get('FLASK_APP_CONFIG', 'development')
+        config_name = os.environ.get('FLASK_CONFIG', 'dev')
         conf = config[config_name]
         self.base_path = conf.BASE_PATH
 

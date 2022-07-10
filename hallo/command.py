@@ -42,6 +42,7 @@ class Command(object):
         project_dir = os.path.join(os.getcwd(), project_name)
         frame_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'frame')
         self.copy_dir(frame_dir, project_dir)
+        os.makedirs(os.path.join(project_dir, 'log'))
         os.remove(os.path.join(project_dir, '__init__.py'))
 
     def notice(self, text):
