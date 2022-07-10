@@ -4,6 +4,10 @@ project=%(project)s
 base_path=%(base_path)s
 echo $base_path
 
+if [ ! -d $base_path/supervisor ];then
+    mkdir $base_path/supervisor
+fi
+
 supervisord_conf=$base_path/supervisor/supervisord.conf
 echo $supervisord_conf
 
