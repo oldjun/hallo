@@ -1,3 +1,4 @@
+include hallo/*
 include hallo/frame/*
 include hallo/frame/sql/*
 include hallo/frame/static/*
@@ -6,4 +7,3 @@ include hallo/frame/static/js/*
 include hallo/frame/static/images/*
 include hallo/frame/templates/*
 include hallo/frame/templates/index/*
-include hallo/frame/supervisor/*

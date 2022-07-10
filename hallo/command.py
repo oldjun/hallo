@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import logging
 import os.path
 import shutil
 import sys
@@ -18,13 +17,15 @@ class Command(object):
             self.version()
         elif cmd == 'create':
             self.create()
+        elif cmd == 'install':
+            self.install()
         else:
             self.notice(f'{cmd} is not available, Type `hallo help` to see all available commands')
 
     @staticmethod
     def help():
         print('Available commands:')
-        command_list = ['help', 'version', 'create']
+        command_list = ['help', 'version', 'create', 'install']
         for command in command_list:
             print(command)
 
@@ -44,6 +45,23 @@ class Command(object):
         self.copy_dir(frame_dir, project_dir)
         os.makedirs(os.path.join(project_dir, 'log'))
         os.remove(os.path.join(project_dir, '__init__.py'))
+
+    def install(self):
+        base_path = os.getcwd()
+        project = base_path.split('/')[-1]
+        tpl_install_shell = os.path.join(os.path.dirname(__file__), 'install.sh')
+        fp = open(tpl_install_shell, 'r', encoding='utf-8')
+        data = fp.read()
+        fp.close()
+
+        prj_install_shell = os.path.join(base_path, 'install.sh')
+        fp = open(prj_install_shell, 'w', encoding='utf-8')
+        data_map = dict(
+            base_path=base_path,
+            project=project
+        )
+        fp.write(data % data_map)
+        fp.close()
 
     def notice(self, text):
         print(f'\033[0;31m{text}\033[0m')
