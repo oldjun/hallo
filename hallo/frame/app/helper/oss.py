@@ -9,7 +9,7 @@ from config import config
 class Oss(object):
 
     def __init__(self):
-        config_name = os.environ.get('FLASK_CONFIG', 'dev')
+        config_name = os.environ.get('FLASK_CONFIG', 'development')
         conf = config[config_name]
         self.conf = conf
         self.auth = oss2.Auth(conf.OSS_CONF['access_key_id'], conf.OSS_CONF['access_key_secret'])

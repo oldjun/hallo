@@ -12,7 +12,7 @@ class BaseCommand(object):
     log_file_name = 'console.log'
 
     def __init__(self):
-        config_name = os.environ.get('FLASK_CONFIG', 'dev')
+        config_name = os.environ.get('FLASK_CONFIG', 'development')
         conf = config[config_name]
         self.conf = conf
         self.base_path = conf.BASE_PATH

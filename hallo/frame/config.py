@@ -74,7 +74,7 @@ class TestingConfig(Config):
 
 
 config = dict(
-    dev=DevelopmentConfig,
-    prod=ProductionConfig,
-    test=TestingConfig
+    development=DevelopmentConfig,
+    production=ProductionConfig,
+    testing=TestingConfig
 )

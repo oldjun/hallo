@@ -8,7 +8,7 @@ from pymyorm.connection_pool import ConnectionPool
 import os
 import memcache
 
-config_name = os.environ.get('FLASK_CONFIG', 'dev')
+config_name = os.environ.get('FLASK_CONFIG', 'development')
 
 root_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 template_folder = os.path.join(root_path, 'templates')
