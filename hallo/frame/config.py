@@ -57,7 +57,7 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     ENV = 'production'
-    MYSQL_MAX_CONN = 8
+    MYSQL_POOL_SIZE = 8
     MYSQL_CONF = dict(
         host='127.0.0.1',
         port=3306,
