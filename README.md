@@ -69,7 +69,7 @@ class HelloController(BaseController):
         return 'hello world'
 ```
 
-### json controller
+### create json controller
 
 file: module/json.py
 
@@ -85,7 +85,7 @@ class JsonController(BaseController):
         return self.error('this is error')
 ```
 
-### html controller
+### create html controller
 
 file: module/html.py
 
