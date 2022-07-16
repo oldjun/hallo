@@ -282,7 +282,7 @@ class Config(object):
     SERVER_NAME = 'hallo.com'
 ```
 
-file: router.py
+file: app/router.py
 
 ```python
 admin = Router(app=app, subdomain='admin', module='admin')
