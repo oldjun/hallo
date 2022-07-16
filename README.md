@@ -91,8 +91,8 @@ url: http://127.0.0.1/json/this-is-json
 
 ```json
 {
-    code: 0,
-    data: "this is ok",
+    "code": 0,
+    "data": "this is ok",
 }
 ```
 
@@ -100,8 +100,8 @@ url: http://127.0.0.1/json/this-is-error
 
 ```json
 {
-    code: 1,
-    data: "this is error",
+    "code": 1,
+    "data": "this is error",
 }
 ```
 
