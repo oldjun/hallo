@@ -405,7 +405,7 @@ url: http://127.0.0.1/file/upload
 
 ### mysql
 
-file/user.sql
+file: sql/user.sql
 
 ```sql
 create table if not exists `user` (
