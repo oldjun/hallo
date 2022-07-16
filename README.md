@@ -124,6 +124,23 @@ url: http://127.0.0.1/html/index
 <p>hello world!</p>
 ```
 
+### model
+
+file: models/user.py
+
+```python
+from pymyorm.model import Model
+
+class User(Model):
+    tablename = 'user'
+```
+
+run table/model to reflect all model from database
+
+```shell
+python console.py table/model
+```
+
 ### config
 
 development
