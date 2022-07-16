@@ -23,7 +23,7 @@ Package is uploaded on [PyPI](https://pypi.org/project/PyMyORM/).
 You can install it with pip:
 
 ```shell
-$python3 pip install -U hallo
+$python3 pip install hallo
 ```
 
 ## <a href=#documentation>Documentation</a>
