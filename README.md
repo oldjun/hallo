@@ -69,6 +69,8 @@ class HelloController(BaseController):
         return 'hello world'
 ```
 
+url: http://127.0.0.1/hello/world
+
 ### create json controller
 
 file: module/json.py
@@ -85,6 +87,24 @@ class JsonController(BaseController):
         return self.error('this is error')
 ```
 
+url: http://127.0.0.1/json/this-is-json
+
+```json
+{
+    code: 0,
+    data: "this is ok",
+}
+```
+
+url: http://127.0.0.1/json/this-is-error
+
+```json
+{
+    code: 1,
+    data: "this is error",
+}
+```
+
 ### create html controller
 
 file: module/html.py
@@ -96,6 +116,12 @@ class HtmlController(BaseController):
     
     def index(self):
         return self.render('html/index.html')
+```
+
+url: http://127.0.0.1/html/index
+
+```html
+<p>hello world!</p>
 ```
 
 ### config
@@ -239,6 +265,12 @@ class HelloController(BaseController):
         return f'hi, {name}'
 ```
 
+url: http://127.0.0.1/hello/jack
+
+```text
+hi, jack
+```
+
 3、subdomain
 
 file: config.py
@@ -274,6 +306,15 @@ class HttpController(BaseController):
         ))
 ```
 
+http://127.0.0.1/http/info?name=jack&age=18
+
+```json
+{
+    "name": "jack",
+    "age": 18
+}
+```
+
 2、post
 
 file: module/http.py
@@ -293,6 +334,15 @@ class HttpController(BaseController):
         ))
 ```
 
+url: http://127.0.0.1/http/save
+
+```json
+{
+    "name": "lucy",
+    "age": 18
+}
+```
+
 3、header
 
 file: module/header.py
@@ -307,6 +357,17 @@ class HeaderController(BaseController):
         return self.ok(token)
 ```
 
+url: http://127.0.0.1/header/token
+
+```json
+{
+    "code": 0,
+    "data": {
+        "token": "123456"
+    }
+}
+```
+
 4、file
 
 file: module/file/upload.py
@@ -319,6 +380,8 @@ class FileController(BaseController):
     def upload(self):
         file = self.file('file')
 ```
+
+url: http://127.0.0.1/file/upload
 
 ### mysql
 
@@ -346,6 +409,15 @@ class UserController(BaseController):
         model.save()
 
         return self.ok()
+```
+
+url: http://127.0.0.1/user/add
+
+```json
+{
+  "code": 0,
+  "data": "ok"
+}
 ```
 
 2、edit user
@@ -377,6 +449,15 @@ class UserController(BaseController):
         return self.ok()
 ```
 
+url: http://127.0.0.1/user/edit
+
+```json
+{
+  "code": 0,
+  "data": "ok"
+}
+```
+
 3、delete user
 
 file: module/user.py
@@ -391,6 +472,15 @@ class UserController(BaseController):
         id = self.post('id')
         User.find().where(id=id).delete()
         return self.ok()
+```
+
+url: http://127.0.0.1/user/delete
+
+```json
+{
+  "code": 0,
+  "data": "ok"
+}
 ```
 
 4、list user
@@ -410,6 +500,8 @@ class UserController(BaseController):
         all = model.offset(self.offset).limit(self.limit).all(raw=True)
         return self.resp_page(all, total)
 ```
+
+url: http://127.0.0.1/user/list
 
 ### redis
 
@@ -432,6 +524,8 @@ class RedisController(BaseController):
             return self.error(str(e))
 ```
 
+url: http://127.0.0.1/redis/mem-set?key=name&val=jack
+
 2、get
 
 file: module/redis.py
@@ -453,6 +547,8 @@ class RedisController(BaseController):
             return self.error(str(e))
 ```
 
+url: http://127.0.0.1/redis/mem-get?key=name
+
 ### memcache
 
 1、set
@@ -473,6 +569,8 @@ class CacheController(BaseController):
             return self.error()
 ```
 
+url: http://127.0.0.1/cache/mem-set?key=name&val=lucy
+
 2、get
 
 file: module/cache.py
@@ -490,6 +588,8 @@ class CacheController(BaseController):
         else:
             return self.error()
 ```
+
+url: http://127.0.0.1/cache/mem-get?key=name
 
 ### file upload
 
@@ -511,6 +611,17 @@ class FileController(BaseController):
         resp = dict()
         resp['path'] = path
         return self.ok(resp)
+```
+
+url: http://127.0.0.1/file/upload
+
+```json
+{
+    "code": 0,
+    "data": {
+        "path": "static/upload/txt/9e/4e/9b/77/9e4e9b7754f8d4a26fc93663d2dae4d6.txt"
+    }
+}
 ```
 
 2、oss
@@ -535,6 +646,9 @@ class OssController(BaseController):
         return self.ok(resp)
 ```
 
+url: http://127.0.0.1/oss/upload
+
+
 ### template
 
 file: module/html.py
@@ -549,6 +663,9 @@ class HtmlController(BaseController):
         tv['title'] = 'hello world!'
         return self.render('html/index.html', tv)
 ```
+
+url: http://127.0.0.1/html/index
+
 
 ### console
 
