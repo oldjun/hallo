@@ -293,6 +293,7 @@ admin = Router(app=app, subdomain='admin', module='admin')
 1、get
 
 file: module/http.py
+
 ```python
 from app.module.base import BaseController
 
@@ -308,7 +309,7 @@ class HttpController(BaseController):
         ))
 ```
 
-http://127.0.0.1/http/info?name=jack&age=18
+url: http://127.0.0.1/http/info?name=jack&age=18
 
 ```json
 {
