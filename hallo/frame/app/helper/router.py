@@ -19,6 +19,8 @@ class Router(object):
         @assign_connection
         def default(path):
             arr = path.split('/')
+            if len(arr) < 2:
+                return error('404 Not Found.')
             action = arr[-1]
             arr.pop()
             controller = arr[-1]
