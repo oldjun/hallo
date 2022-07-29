@@ -207,9 +207,10 @@ mysql
 
 ```python
 class Config(object):
-    # mysql
-    MYSQL_POOL_SIZE = 1
-    MYSQL_CONF = dict(
+    # db: mysql / pgsql
+    DB_POOL_SIZE = 1
+    DB_CONF = dict(
+        source='mysql',
         host='127.0.0.1',
         port=3306,
         user='root',
