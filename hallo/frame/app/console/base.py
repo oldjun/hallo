@@ -28,7 +28,7 @@ class BaseCommand(object):
 
     def connect(self):
         try:
-            mysql_conf = self.conf.MYSQL_CONF
-            Database.connect(**mysql_conf)
+            db_conf = self.conf.DB_CONF
+            Database.connect(**db_conf)
         except Exception as e:
             logging.error(str(e))

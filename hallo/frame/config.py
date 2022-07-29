@@ -23,9 +23,10 @@ class Config(object):
     # file upload
     MAX_CONTENT_LENGTH = 8 * 1024 * 1024  # 8M
 
-    # mysql
-    MYSQL_POOL_SIZE = 1
-    MYSQL_CONF = dict(
+    # database: mysql / postgresql
+    DB_POOL_SIZE = 1
+    DB_CONF = dict(
+        source='mysql',
         host='127.0.0.1',
         port=3306,
         user='root',
@@ -57,8 +58,9 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     ENV = 'production'
-    MYSQL_POOL_SIZE = 8
-    MYSQL_CONF = dict(
+    DB_POOL_SIZE = 8
+    DB_CONF = dict(
+        source='mysql',
         host='127.0.0.1',
         port=3306,
         user='root',

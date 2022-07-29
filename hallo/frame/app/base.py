@@ -29,14 +29,14 @@ app.logger.info('flask app init')
 
 debug = app.config.get('DEBUG', False)
 
-# mysql
-mysql_conf = app.config.get('MYSQL_CONF')
-if mysql_conf:
+# db
+db_conf = app.config.get('DB_CONF')
+if db_conf:
     pool = ConnectionPool()
-    mysql_pool_size = app.config.get('MYSQL_POOL_SIZE', 1)
-    pool.size(size=mysql_pool_size)
-    mysql_conf['debug'] = debug
-    pool.create(**mysql_conf)
+    db_pool_size = app.config.get('DB_POOL_SIZE', 1)
+    pool.size(size=db_pool_size)
+    db_conf['debug'] = debug
+    pool.create(**db_conf)
 
 # redis
 app.config['redis'] = FlaskRedis(app)
