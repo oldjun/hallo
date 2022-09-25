@@ -43,17 +43,11 @@ hallo --version
 hallo create your-project
 ```
 
-### install requirements
+### install requirements and run project
 
 ```shell
 cd your-project
-pip install -r requirements.txt
-```
-
-### run project
-
-```shell
-python main.py
+hallo install
 ```
 
 ### create first controller
