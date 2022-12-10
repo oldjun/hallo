@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-version = '0.2.6'
+version = '1.0.0'
 
 with open("./README.md", encoding="utf-8") as f:
     readme = f.read()
@@ -24,7 +24,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Topic :: Database',
+        'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
     ],
     entry_points={
         'console_scripts': ['hallo=hallo.__main__:main'],
