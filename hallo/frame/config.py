@@ -26,7 +26,6 @@ class Config(object):
     # database: mysql / postgresql
     DB_POOL_SIZE = 1
     DB_CONF = dict(
-        source='mysql',
         host='127.0.0.1',
         port=3306,
         user='root',
@@ -60,7 +59,6 @@ class ProductionConfig(Config):
     ENV = 'production'
     DB_POOL_SIZE = 8
     DB_CONF = dict(
-        source='mysql',
         host='127.0.0.1',
         port=3306,
         user='root',
